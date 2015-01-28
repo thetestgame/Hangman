@@ -1,2 +1,2 @@
 # Hangman
-Python command line implementation of the classic game hangman
+Python command line implementation of the classic game of hangman
