@@ -33,9 +33,15 @@ def getWordList():
     words = response.read()
     return words.splitlines()
 
+def validWord(word):
+    return not ("'" in word or "." in word or "," in word or "-" in word)
+
 def chooseRandomWord():
     words = getWordList();
-    return random.choice(words)
+    word = random.choice(words)
+    while not validWord(word):
+        word = random.choice(words)
+    return word
     
 def runGame(secretWord, mistakes, lettersGuessed):
     possibleGuesses = 8
