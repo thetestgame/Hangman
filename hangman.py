@@ -30,8 +30,12 @@ def isLetterInWord(secretWord, letter):
 def getWordList():
     word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
     response = urllib2.urlopen(word_site)
-    words = response.read()
-    return words.splitlines()
+    words = response.read().splitlines()
+    for i in range(0, len(words)):
+        word = words[i]
+        words[i] = word.translate(string.maketrans('', ''), " .,/\|:;[]{}'`!@#$&*^%()-_+=")
+        words[i] = word.lower()
+    return words
 
 def validWord(word):
     return not ("'" in word or "." in word or "," in word or "-" in word)
@@ -74,3 +78,6 @@ def hangman():
     print 'I am thinking of a word that is ' + str(len(secretWord)) + ' letters long.'
     print '-------------'
     runGame(secretWord.lower(), 0, [])
+
+if __name__ == '__main__':
+    hangman()
