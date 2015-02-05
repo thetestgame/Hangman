@@ -32,9 +32,9 @@ def getWordList():
     response = urllib2.urlopen(word_site)
     words = response.read().splitlines()
     for i in range(0, len(words)):
-        word = words[i]
-        words[i] = word.translate(string.maketrans('', ''), " .,/\|:;[]{}'`!@#$&*^%()-_+=")
-        words[i] = word.lower()
+        words[i] = words[i].translate(string.maketrans('', ''), ".,/\|:;[]{}'`!@#$&*^%()-_+=")
+        words[i] = words[i].lower()
+        words[i] = words[i].strip()
     return words
 
 def validWord(word):
